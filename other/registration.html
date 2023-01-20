@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+<div id="output"></div>
+<form name="user" action="http://localhost:8025">
+  <input type="text" name="username" placeholder="Введите имя" /><br/>
+  <input type="text" name="password" placeholder="Введите пароль" /><br/>
+  <input type="submit" name="submit" value="Отправить" />
+</form>
+<form name="authorization" action="http:localhost:8025">
+  <input type="submit" name="submit" value="Войти" />
+</form>
+<script>
+  var form = document.forms.user;
+  var auth = document.forms.authorization;
+  form.submit.addEventListener("click", sendRequest);
+  auth.submit.addEventListener("click", sendAuth);
+  function sendAuth(event){
+    event.preventDefault();
+    var request = new XMLHttpRequest();
+    request.open("POST", auth.action);
+    request.send("Regist23&*&2rati43+_+-3H*74eon_01202*%^1(reg)(istr)ation");
+
+  }
+  function sendRequest(event){
+    event.preventDefault();
+    var formData = new FormData(form);
+    var request = new XMLHttpRequest();
+    request.open("POST", form.action);
+
+    request.send("Registration\n\n" + "Login: " + formData.get("username") + "\nPassword: " + formData.get("password"));
+  }
+</script>
+</body>
+</html>
